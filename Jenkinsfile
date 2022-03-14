@@ -1,10 +1,13 @@
 pipeline {
     agent any
-
+    
+    tools {
+        maven "Maven3"
+    }
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+               checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'c27f254c-8fe8-4ab8-b331-781a684ec625', url: 'https://github.com/MUFFIUS/myInfra2021Repo']]])
             }
         }
     
